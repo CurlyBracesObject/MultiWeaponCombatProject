@@ -1,11 +1,9 @@
 #include "Player.h"
-
 // 获取血量
 int Player::getHealth()
 {
 	return health;
 }
-
 void Player::revive()
 {
 	maxhealth = 100;
@@ -17,17 +15,15 @@ void Player::addEXP(int aEXP)
 	if (EXP >= 100 * grade)
 	{
 		upGrade();
-		std::cout << "升级啦！当前等级:" << grade << std::endl;
-		std::cout << "升级后血量恢复并+10点血，当前血量:" << health << std::endl;
+		std::cout << "Level up! Current level: " << grade << std::endl;
+		std::cout << "HP restored and +10 HP after leveling up, current HP: " << health << std::endl;
 	}
-	std::cout << "距离下一级还差" << 100 * grade - EXP << "经验" << std::endl;
+	std::cout << "Need " << 100 * grade - EXP << " more EXP to next level" << std::endl;
 }
-
 int Player::getStackeddamage()
 {
 	return stackeddamage;
 }
-
 // 遍历背包
 void Player::showBag()
 {
@@ -38,15 +34,15 @@ void Player::showBag()
 		std::string str = "";
 		if (name.compare("EnergyShield") == 0)
 		{
-			str = "能量盾";
+			str = "Energy Shield";
 		}
 		else if (name.compare("potion") == 0)
 		{
-			str = "药水";
+			str = "Potion";
 		}
 		else if (name.compare("Medical") == 0)
 		{
-			str = "医药箱";
+			str = "Medical Kit";
 		}
 		std::cout << str << "x" << it->second << " ";
 	}
@@ -133,11 +129,10 @@ void Player::changeWeapon(const std::string& weaponName)
 		}
 	}
 }
-
 // 攻击
 int Player::attack()
 {
-	std::string name = "激光枪";
+	std::string name = "Laser Gun";
 	if (name.compare(currWeapon->getName()) == 0)
 	{
 		return currWeapon->getDamage() + currWeapon->getDamage() * 0.2 + stackeddamage;
@@ -155,10 +150,10 @@ int Player::takeDamage(int amount)
 		shield -= amount * 0.7;
 		if (shield <= 0) {
 			shield = 0;
-			std::cout << "护盾受到:" << stem - shield << "点伤害，护盾破裂" << std::endl;
+			std::cout << "Shield took " << stem - shield << " damage, shield broken" << std::endl;
 		}
 		else {
-			std::cout << "护盾受到:" << stem - shield << "点伤害，剩余:" << shield << std::endl;
+			std::cout << "Shield took " << stem - shield << " damage, remaining: " << shield << std::endl;
 		}
 	}
 	else
@@ -171,13 +166,11 @@ int Player::takeDamage(int amount)
 	}
 	return tem - health;
 }
-
 // 获取当前武器
 Weapon* Player::getCurrentWeapon() const
 {
 	return currWeapon;
 }
-
 // 添加武器到武器库
 void Player::addWeaponToInventory(Weapon& weapon)
 {

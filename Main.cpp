@@ -9,7 +9,6 @@
 #include "Enemy.h"
 #include "GameController.h"
 using namespace std;
-
 GameController* gc = NULL;
 void creat_thread();
 void thread_function() // 游戏线程
@@ -18,10 +17,10 @@ void thread_function() // 游戏线程
 	int s = 1;
 	while (1)
 	{
-		cout << "\n第" << s << "交战开始" << endl;
+		cout << "\nBattle " << s << " begins" << endl;
 		//cout.flush();
 		int r = gc->executePlayerAction();
-		cout << "第" << s++ << "交战结束" << endl;
+		cout << "Battle " << s++ << " ends" << endl;
 		if (r == 1)
 		{
 			creat_thread();
@@ -32,14 +31,11 @@ void thread_function() // 游戏线程
 		}
 	}
 }
-
 void creat_thread()
 {
 	thread t(thread_function);
 	t.detach();
 }
-
-
 int main()
 {
 	GameController g;
